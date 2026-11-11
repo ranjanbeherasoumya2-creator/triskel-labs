@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Triskel Labs | Security-minded software by TriNova</title>
+<meta name="description" content="Triskel Labs is a cybersecurity and software company founded by Soumya Ranjan Behera, built by team TriNova.">
+<meta name="theme-color" content="#070913">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Triskel Labs by TriNova">
+<meta property="og:description" content="Cybersecurity, digital forensics and software, founded by Soumya Ranjan Behera.">
+<meta property="og:image" content="assets/images/soumya.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070913'/%3E%3Cg fill='none' stroke='%238b5cf6' stroke-width='6' stroke-linecap='round'%3E%3Cpath id='a' d='M32 32C32 20 38 12 48 12C56 12 58 20 54 25'/%3E%3Cpath d='M32 32C32 20 38 12 48 12C56 12 58 20 54 25' transform='rotate(120 32 32)'/%3E%3Cpath d='M32 32C32 20 38 12 48 12C56 12 58 20 54 25' transform='rotate(240 32 32)'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Triskel Labs","founder":{"@type":"Person","name":"Soumya Ranjan Behera","sameAs":"https://www.linkedin.com/in/soumya-ranjan-behera-5216a928"}}</script>
+<style>
+/* ---------- Design tokens ---------- */
+:root{--bg:#070913;--ink:#eef1ff;--mute:#9aa3c7;--blue:#2f6bff;--violet:#8b5cf6;--cyan:#38bdf8;
+--grad:linear-gradient(120deg,var(--blue),var(--violet));
+--glass:rgba(255,255,255,.05);--line:rgba(255,255,255,.11);--r:22px;
+--head:'Sora',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.7 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(60vw 50vh at 85% -5%,rgba(139,92,246,.28),transparent),radial-gradient(55vw 50vh at -5% 30%,rgba(47,107,255,.22),transparent),radial-gradient(50vw 40vh at 70% 100%,rgba(56,189,248,.12),transparent)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--head);line-height:1.15;letter-spacing:-.02em}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;border-radius:8px;z-index:99}.skip:focus{left:8px}
+.wrap{width:min(1160px,92%);margin:auto}
+section{padding:96px 0}
+.head{max-width:640px;margin-bottom:48px}
+.head h2{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:14px}
+.head p{color:var(--mute)}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 20px 50px -25px rgba(0,0,0,.7)}
+.lift{transition:transform .35s,border-color .35s,box-shadow .35s}
+.lift:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.55);box-shadow:0 28px 60px -24px rgba(139,92,246,.45)}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:700;border:1px solid var(--line);background:var(--glass);cursor:pointer;color:var(--ink);font-family:inherit;font-size:1rem;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:var(--grad);border-color:transparent;box-shadow:0 12px 30px -10px rgba(99,102,241,.8)}
+.btn.pri:hover{box-shadow:0 18px 40px -10px rgba(99,102,241,1)}
+.btn[aria-disabled=true]{opacity:.6;cursor:not-allowed;transform:none}
+/* Logo */
+.logo{width:36px;height:36px;flex:none}
+.brand{display:flex;align-items:center;gap:12px;font:700 1.15rem var(--head)}
+.brand small{display:block;font:500 .72rem var(--body);color:var(--mute);letter-spacing:0}
+/* Navbar */
+header{position:fixed;inset:14px 0 auto;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 10px 20px;border-radius:999px}
+.nav ul{display:flex;gap:6px;list-style:none;padding:0}
+.nav ul a{display:block;padding:8px 14px;border-radius:999px;color:var(--mute);font-weight:500;font-size:.95rem;transition:.25s}
+.nav ul a:hover,.nav ul a.on{color:#fff;background:rgba(255,255,255,.09)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.4rem;cursor:pointer;padding:8px}
+.nav .btn{padding:10px 20px;font-size:.92rem}
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,6vw,4.6rem);margin-bottom:22px;background:linear-gradient(120deg,#fff 30%,#b9c6ff 70%,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--mute);font-size:1.15rem;max-width:560px;margin-bottom:12px}
+.team{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;margin-bottom:26px;font-weight:500;font-size:.95rem}
+.team i{color:var(--cyan)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.visual{position:relative;aspect-ratio:1;display:grid;place-items:center}
+.visual .big{width:62%;height:auto;aspect-ratio:1;filter:drop-shadow(0 0 40px rgba(139,92,246,.7));animation:spin 40s linear infinite}
+.ring{position:absolute;border-radius:50%;border:1px dashed rgba(139,92,246,.4);animation:spin 60s linear infinite reverse}
+.ring.r1{inset:6%}.ring.r2{inset:-4%;border-color:rgba(47,107,255,.3);animation-duration:90s}
+.chip{position:absolute;padding:9px 16px;border-radius:14px;font-size:.85rem;font-weight:500;animation:float 6s ease-in-out infinite}
+.chip.c1{top:8%;left:-2%}.chip.c2{top:30%;right:-9%;animation-delay:-2s}.chip.c3{bottom:10%;left:4%;animation-delay:-4s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{50%{transform:translateY(-12px)}}
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{padding:30px}
+.card h3{font-size:1.25rem;margin-bottom:10px}
+.card p{color:var(--mute)}
+.ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--grad);margin-bottom:18px;font-size:1.15rem}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:20px}
+.stat{padding:26px;text-align:center}
+.stat b{display:block;font:700 2.6rem var(--head);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--mute);font-size:.92rem}
+/* Services & Why */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.note{color:var(--mute);font-size:.92rem;margin-top:22px}
+/* Founder */
+.founder{display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start}
+.id{position:sticky;top:96px;overflow:hidden}
+.id img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.id div{padding:26px}
+.id h3{font-size:1.5rem}
+.id p{color:var(--mute);margin:4px 0 20px}
+.id .btn{width:100%;justify-content:center;margin-top:10px}
+.stack{display:grid;gap:20px}
+.panel{padding:28px}
+.panel h3{font-size:1.1rem;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.panel h3 i{color:var(--cyan)}
+.panel ul{padding-left:18px;color:var(--mute)}
+.panel li{margin-bottom:6px}
+.item{padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.item:last-child{border:0;margin:0;padding:0}
+.item b{display:block}.item em{font-style:normal;color:var(--cyan);font-size:.88rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{padding:6px 14px;border-radius:999px;background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3);font-size:.88rem}
+/* Projects */
+.proj{display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.shot{position:relative;min-height:320px;background:linear-gradient(135deg,#17104a,#0c2a6b);display:grid;place-items:center;overflow:hidden}
+.shot::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 22px,rgba(255,255,255,.04) 22px 23px);transition:transform .8s}
+.proj:hover .shot::before{transform:translateY(23px)}
+.doc{width:62%;padding:18px;border-radius:16px;position:relative}
+.doc i{display:block;height:9px;border-radius:5px;background:rgba(255,255,255,.2);margin-bottom:10px}
+.doc i:nth-child(2){width:70%}.doc i:nth-child(3){width:85%;background:rgba(244,114,182,.7)}.doc i:nth-child(4){width:50%}
+.proj .txt{padding:38px}
+.proj h3{font-size:1.6rem;margin-bottom:12px}
+.proj p{color:var(--mute);margin-bottom:18px}
+/* Contact */
+.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}
+form{padding:32px;display:grid;gap:18px}
+label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
+input,textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);font:inherit;transition:border-color .25s,box-shadow .25s}
+input:focus,textarea:focus{outline:0;border-color:var(--violet);box-shadow:0 0 0 4px rgba(139,92,246,.2)}
+.err{color:#fda4af;font-size:.85rem;min-height:1.1em;font-weight:400}
+input.bad,textarea.bad{border-color:#fb7185}
+#status{font-size:.95rem;min-height:1.4em}
+.notice{padding:12px 16px;border-radius:14px;background:rgba(252,211,77,.1);border:1px solid rgba(252,211,77,.35);color:#fde68a;font-size:.9rem;line-height:1.5}
+/* Footer */
+footer{border-top:1px solid var(--line);padding:56px 0 30px}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot ul{list-style:none;padding:0;display:flex;gap:22px;flex-wrap:wrap;color:var(--mute)}
+.foot a:hover{color:#fff}
+.copy{margin-top:34px;color:var(--mute);font-size:.88rem}
+/* Reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+/* Responsive */
+@media(max-width:960px){
+.hero .wrap,.about,.founder,.proj,.contact{grid-template-columns:1fr}
+.visual{max-width:380px;margin:auto}.id{position:static}
+.values,.stats{grid-template-columns:repeat(2,1fr)}
+.burger{display:block}
+.nav ul{position:absolute;top:70px;left:0;right:0;flex-direction:column;padding:14px;border-radius:22px;background:rgba(10,12,28,.95);border:1px solid var(--line);display:none}
+.nav ul.open{display:flex}.nav>.btn{display:none}
+}
+@media(max-width:560px){section{padding:72px 0}.values,.stats{grid-template-columns:1fr}.hero{padding-top:120px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#home">Skip to content</a>
+
+<!-- Shared logo: a three-armed triskelion drawn from the name "Triskel" (not a reference to people) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset=".5" stop-color="#2f6bff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+<symbol id="mark" viewBox="0 0 64 64"><g fill="none" stroke="url(#lg)" stroke-width="5" stroke-linecap="round"><path d="M32 32C32 20 38 12 48 12C56 12 58 20 54 25"/><path d="M32 32C32 20 38 12 48 12C56 12 58 20 54 25" transform="rotate(120 32 32)"/><path d="M32 32C32 20 38 12 48 12C56 12 58 20 54 25" transform="rotate(240 32 32)"/></g><circle cx="32" cy="32" r="4" fill="url(#lg)"/></symbol>
+</svg>
+
+<header>
+<div class="wrap"><nav class="nav glass" aria-label="Main">
+<a class="brand" href="#home" aria-label="Triskel Labs home"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark"/></svg><span><span data-company>Triskel Labs</span><small>by <span data-team>TriNova</span></small></span></a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i class="fa-solid fa-bars"></i></button>
+<ul id="menu">
+<li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Our Services</a></li><li><a href="#founder">Founder</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li>
+</ul>
+<a class="btn pri" href="#contact">Get In Touch</a>
+</nav></div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="home"><div class="wrap">
+<div>
+<div class="team glass"><i class="fa-solid fa-circle-nodes"></i> Team <span data-team>TriNova</span></div>
+<h1>Security-minded software for a connected world.</h1>
+<p class="lead"><b data-company>Triskel Labs</b> brings together cybersecurity, digital forensics and software development, led by founder and CEO Soumya Ranjan Behera.</p>
+<p class="lead">We build practical tools that help people investigate, understand and protect against digital threats.</p>
+<div class="cta"><a class="btn pri" href="#projects">Explore Our Work <i class="fa-solid fa-arrow-right"></i></a><a class="btn" href="#founder">Meet Our Founder</a></div>
+</div>
+<div class="visual" aria-hidden="true">
+<span class="ring r1"></span><span class="ring r2"></span>
+<svg class="big" viewBox="0 0 64 64"><use href="#mark"/></svg>
+<span class="chip glass c1"><i class="fa-solid fa-magnifying-glass"></i> Digital forensics</span>
+<span class="chip glass c2"><i class="fa-solid fa-flag"></i> CTF problem solving</span>
+<span class="chip glass c3"><i class="fa-solid fa-shield-halved"></i> Vulnerability assessment</span>
+</div>
+</div></section>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap">
+<div class="head rv"><h2>A small lab with a clear focus on security.</h2>
+<p><span data-company>Triskel Labs</span> is the company. <span data-team>TriNova</span> is the team behind it. Together we turn hands-on security learning into software people can use.</p></div>
+<div class="about">
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-bullseye"></i></div><h3>Our mission</h3><p>Make practical cybersecurity and forensic tools that are clear to use and built with care.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-eye"></i></div><h3>Our vision</h3><p>A digital world where fraud and threats are easier to spot, analyse and stop.</p></div>
+</div>
+<div class="values">
+<div class="card glass lift rv"><h3>Curiosity</h3><p>We learn by doing: labs, challenges and real problems.</p></div>
+<div class="card glass lift rv"><h3>Integrity</h3><p>We say what we have done and nothing more.</p></div>
+<div class="card glass lift rv"><h3>Craft</h3><p>Clean code, clear interfaces, careful details.</p></div>
+</div>
+<div class="stats">
+<div class="stat glass rv"><b data-n="9">0</b><span>Rank in Flag Hunter 2.1 CTF</span></div>
+<div class="stat glass rv"><b data-n="10">0</b><span>NEC 2025 finalist place (Top 10)</span></div>
+<div class="stat glass rv"><b data-n="54">0</b><span>All India Rank, NEC 2024 finalist</span></div>
+<div class="stat glass rv"><b data-n="5">0</b><span>Certifications earned</span></div>
+</div>
+</div></section>
+
+<!-- SERVICES -->
+<section id="services"><div class="wrap">
+<div class="head rv"><h2>Where we focus</h2><p>Areas of interest and capabilities, shown as strengths we are building rather than a catalogue of confirmed paid services.</p></div>
+<div class="grid">
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-shield-halved"></i></div><h3>Cybersecurity</h3><p>Vulnerability assessment, malware analysis, OSINT and basic penetration testing.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-code"></i></div><h3>Web Development</h3><p>Responsive sites with HTML, CSS and JavaScript.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-brain"></i></div><h3>AI and Machine Learning</h3><p>AI-assisted analysis using Python, scikit-learn and OCR tooling.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-laptop-code"></i></div><h3>Software Development</h3><p>Python, Flask, SQL, C and Java applications.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-lightbulb"></i></div><h3>Digital Innovation</h3><p>Ideas tested in national entrepreneurship challenges.</p></div>
+</div>
+</div></section>
+
+<!-- FOUNDER -->
+<section id="founder"><div class="wrap">
+<div class="head rv"><h2>Meet the founder</h2><p>Everything below comes from Soumya's own resume.</p></div>
+<div class="founder">
+<aside class="id glass rv">
+<img src="assets/images/soumya.jpg" width="720" height="1080" alt="Portrait of Soumya Ranjan Behera" fetchpriority="high">
+<div><h3>Soumya Ranjan Behera</h3><p>Founder and CEO, <span data-company>Triskel Labs</span></p>
+<a class="btn" href="https://www.linkedin.com/in/soumya-ranjan-behera-5216a928" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+<a class="btn pri" id="resumeBtn" href="#" aria-disabled="true"><i class="fa-solid fa-download"></i> <span>Resume coming soon</span></a></div>
+</aside>
+<div class="stack">
+<div class="panel glass rv"><h3><i class="fa-solid fa-user"></i> Introduction</h3><p style="color:var(--mute)">Cybersecurity learner with hands-on experience in cybersecurity training, cyber-fraud forensics, AI-assisted evidence analysis, malware analysis and CTF-based problem solving. Interested in digital forensics, security analysis, vulnerability assessment and practical cybersecurity solutions.</p></div>
+<div class="panel glass rv"><h3><i class="fa-solid fa-briefcase"></i> Experience</h3>
+<div class="item"><b>Cybersecurity Intern, Amroha Police Cyber Security Internship Program (APCSIP) 2026</b><em>June 2026</em><ul><li>Completed the program and took part in cybersecurity activities and the Flag Hunter 2.1 CTF.</li><li>Placed 9th in the CTF and received a certificate for outstanding performance.</li></ul></div>
+<div class="item"><b>Cybersecurity Intern, DROP (DCSC Program)</b><em>Aug 2026 to present</em><ul><li>Hands-on training through practical labs, CTF challenges and security exercises.</li><li>Vulnerability assessment and basic penetration-testing concepts, with exposure to networking, Linux, OWASP Top 10 and security analysis.</li></ul></div></div>
+<div class="panel glass rv"><h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+<div class="item"><b>B.Tech, Sambalpur University Institute of Information Technology</b><em>2023 to 2027</em></div>
+<div class="item"><b>Higher Secondary, Nimapara Autonomous College</b><em>2021 to 2023</em></div>
+<div class="item"><b>Secondary School, Saraswati Shishu Vidya Mandir</b><em>2020 to 2021</em></div></div>
+<div class="panel glass rv"><h3><i class="fa-solid fa-microchip"></i> Technical skills</h3><div class="tags"><span>Cybersecurity</span><span>Digital Forensics</span><span>Cyber-Fraud Analysis</span><span>Malware Analysis</span><span>OSINT</span><span>Vulnerability Assessment</span><span>Basic Penetration Testing</span><span>Networking</span><span>Linux</span><span>OWASP Top 10</span><span>Python</span><span>Flask</span><span>scikit-learn</span><span>Tesseract OCR</span><span>OpenCV</span><span>SQLite</span><span>ReportLab</span><span>C</span><span>Java (Basic)</span><span>SQL</span><span>HTML/CSS/JavaScript</span></div></div>
+<div class="panel glass rv"><h3><i class="fa-solid fa-certificate"></i> Certifications</h3><ul><li>Amroha Police Cyber Security Internship Program 2026, Certificate of Completion (June 2026)</li><li>Flag Hunter 2.1 CTF, Certificate of Participation / Outstanding Performance (21/06/2026)</li><li>DCSC (DROP Certified Security Course)</li><li>NEXTWAVE AI Workshop, Certified</li><li>Be10x ChatGPT and AI Tools Workshop, Certified</li></ul></div>
+<div class="panel glass rv"><h3><i class="fa-solid fa-trophy"></i> Achievements and events</h3><ul><li>9th Rank, Flag Hunter 2.1 CTF, APCSIP 2026</li><li>NEC 2025, Top 10 Finalist, National Entrepreneurship Challenge, IIT Bombay</li><li>NEC 2024, AIR 54 Finalist, National Entrepreneurship Challenge, IIT Bombay</li><li>E-Summit 2025 and 2026, Participant, IIT Bombay</li></ul></div>
+<div class="panel glass rv"><h3><i class="fa-solid fa-language"></i> Languages</h3><div class="tags"><span>English</span><span>Hindi</span><span>Odia</span></div></div>
+</div></div>
+</div></section>
+
+<!-- PROJECTS -->
+<section id="projects"><div class="wrap">
+<div class="head rv"><h2>Our projects</h2><p>One project so far. More will appear here as they are ready.</p></div>
+<article class="proj glass lift rv">
+<div class="shot" aria-hidden="true"><div class="doc glass"><i></i><i></i><i></i><i></i></div></div>
+<div class="txt"><h3>CyberForensics OS</h3>
+<p>An AI-assisted digital forensics platform for analysing fraud evidence such as screenshots, bank statements, fake KYC documents, UPI receipts, chat exports, SMS and email content.</p>
+<p style="font-size:.9rem;margin-bottom:10px">Related skills from the founder's resume:</p>
+<div class="tags"><span>Python</span><span>Flask</span><span>scikit-learn</span><span>Tesseract OCR</span><span>OpenCV</span><span>SQLite</span><span>ReportLab</span></div></div>
+</article>
+</div></section>
+
+<!-- WHY -->
+<section id="why"><div class="wrap">
+<div class="head rv"><h2>Why work with us</h2><p>How <span data-team>TriNova</span> approaches every project.</p></div>
+<div class="grid">
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-rocket"></i></div><h3>Innovation</h3><p>We test fresh ideas, as in national entrepreneurship challenges.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-handshake"></i></div><h3>Collaboration</h3><p>Open communication and a direct line to the founder.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-gauge-high"></i></div><h3>Technical Excellence</h3><p>Built on practical training in security, Linux, networking and Python.</p></div>
+<div class="card glass lift rv"><div class="ico"><i class="fa-solid fa-puzzle-piece"></i></div><h3>Problem Solving</h3><p>Sharpened through CTF challenges and forensic analysis.</p></div>
+</div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap">
+<div class="head rv"><h2>Get in touch</h2><p>Send a message and tell us what you are working on. You can also connect on LinkedIn.</p></div>
+<div class="contact">
+<div class="card glass rv"><div class="ico"><i class="fa-brands fa-linkedin-in"></i></div><h3>Connect online</h3><p style="margin-bottom:18px">Soumya Ranjan Behera on LinkedIn.</p><a class="btn" href="https://www.linkedin.com/in/soumya-ranjan-behera-5216a928" target="_blank" rel="noopener">Open LinkedIn</a></div>
+<form class="glass rv" id="form" novalidate>
+<p class="notice" id="notice"><i class="fa-solid fa-circle-info"></i> This form is not connected yet. Messages are not delivered until a form service is set up, so please use LinkedIn for now.</p>
+<label>Name<input id="name" name="name" autocomplete="name"><span class="err" data-for="name"></span></label>
+<label>Email<input id="email" name="email" type="email" autocomplete="email"><span class="err" data-for="email"></span></label>
+<label>Subject<input id="subject" name="subject"><span class="err" data-for="subject"></span></label>
+<label>Message<textarea id="message" name="message" rows="5"></textarea><span class="err" data-for="message"></span></label>
+<button class="btn pri" type="submit">Send message <i class="fa-solid fa-paper-plane"></i></button>
+<div id="status" role="status" aria-live="polite"></div>
+</form>
+</div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="foot">
+<div><a class="brand" href="#home"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark"/></svg><span><span data-company>Triskel Labs</span><small>A <span data-team>TriNova</span> team project</small></span></a></div>
+<ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Our Services</a></li><li><a href="#founder">Founder</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li></ul>
+<a href="https://www.linkedin.com/in/soumya-ranjan-behera-5216a928" target="_blank" rel="noopener" aria-label="LinkedIn" style="font-size:1.5rem"><i class="fa-brands fa-linkedin"></i></a>
+</div>
+<p class="copy">&copy; <span id="yr">2026</span> <span data-company>Triskel Labs</span>. Team <span data-team>TriNova</span>. All rights reserved.</p>
+</div></footer>
+
+<script>
+/* ---------- Editable settings ---------- */
+const CONFIG = {
+  company: 'Triskel Labs',          // company name
+  team: 'TriNova',                  // team name (change here and it updates everywhere)
+  resumeApproved: false,            // set true after the public resume PDF is approved
+  resumePath: 'assets/resumes/soumya-resume.pdf',
+  formEndpoint: ''                  // e.g. a Formspree URL; empty = messages are NOT sent yet
+};
+document.querySelectorAll('[data-company]').forEach(e => e.textContent = CONFIG.company);
+document.querySelectorAll('[data-team]').forEach(e => e.textContent = CONFIG.team);
+if (CONFIG.formEndpoint) document.getElementById('notice').hidden = true;
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Resume button: stays disabled until approved */
+const rb = document.getElementById('resumeBtn');
+if (CONFIG.resumeApproved) {
+  rb.href = CONFIG.resumePath; rb.setAttribute('download', ''); rb.removeAttribute('aria-disabled');
+  rb.querySelector('span').textContent = 'Download Resume';
+} else rb.addEventListener('click', e => e.preventDefault());
+
+/* Mobile menu */
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+const setMenu = o => { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o);
+  burger.firstElementChild.className = o ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'; };
+burger.onclick = () => setMenu(!menu.classList.contains('open'));
+menu.querySelectorAll('a').forEach(a => a.onclick = () => setMenu(false));
+addEventListener('keydown', e => e.key === 'Escape' && setMenu(false));
+
+/* Scroll spy */
+const links = [...menu.querySelectorAll('a')];
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('main section[id]').forEach(s => spy.observe(s));
+
+/* Scroll reveal + animated counters */
+const count = el => { const t = +el.dataset.n; let c = 0; const step = Math.max(1, Math.ceil(t / 40));
+  const id = setInterval(() => { c = Math.min(t, c + step); el.textContent = c; if (c >= t) clearInterval(id); }, 35); };
+const rv = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  const n = e.target.querySelector('[data-n]'); if (n) count(n);
+  rv.unobserve(e.target);
+}), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => rv.observe(el));
+
+/* Contact form validation (frontend only) */
+const form = document.getElementById('form'), status = document.getElementById('status');
+const rules = {
+  name: v => v.trim().length >= 2 || 'Enter your name (at least 2 characters).',
+  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || 'Enter a valid email address, like name@example.com.',
+  subject: v => v.trim().length >= 3 || 'Enter a subject (at least 3 characters).',
+  message: v => v.trim().length >= 10 || 'Write a message of at least 10 characters.'
+};
+const check = k => { const f = form[k], r = rules[k](f.value);
+  form.querySelector(`[data-for=${k}]`).textContent = r === true ? '' : r;
+  f.classList.toggle('bad', r !== true); f.setAttribute('aria-invalid', r !== true); return r === true; };
+Object.keys(rules).forEach(k => form[k].addEventListener('blur', () => check(k)));
+form.addEventListener('submit', async e => {
+  e.preventDefault(); status.style.color = '';
+  if (!Object.keys(rules).map(check).every(Boolean)) { status.textContent = 'Please fix the highlighted fields.'; status.style.color = '#fda4af'; return; }
+  if (!CONFIG.formEndpoint) { status.textContent = 'Your message looks good, but sending is not switched on yet, so it has not been delivered. Please reach out on LinkedIn for now.'; status.style.color = '#fcd34d'; return; }
+  try {
+    const r = await fetch(CONFIG.formEndpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+    if (!r.ok) throw 0;
+    form.reset(); status.textContent = 'Message sent. Thank you, we will reply soon.'; status.style.color = '#86efac';
+  } catch { status.textContent = 'Message could not be sent. Please try again or use LinkedIn.'; status.style.color = '#fda4af'; }
+});
+</script>
+</body>
+</html>
